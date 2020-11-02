@@ -35,7 +35,7 @@
           </template>
         </el-table-column>
         <el-table-column label="操作" width="180px">
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <!-- 修改按钮 -->
             <el-button type="primary" icon="el-icon-edit" size="mini" @click="showEditDialog(scope.row.id)"></el-button>
             <!-- 删除按钮 -->
@@ -118,6 +118,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     // 验证邮箱的规则
@@ -266,22 +267,7 @@ export default {
     },
     // 点击按钮，添加新用户
     addUser() {
-      // this.$refs.addFormRef.validate(async valid => {
-      //   if (!valid) return
-      //   // 可以发起添加用户的网络请求
-      //   const { data: res } = await this.$http.post('users', this.addForm)
-
-      //   if (res.meta.status !== 201) {
-      //     this.$message.error('添加用户失败！')
-      //   }
-
-      //   this.$message.success('添加用户成功！')
-      //   // 隐藏添加用户的对话框
-      //   this.addDialogVisible = false
-      //   // 重新获取用户列表数据
-      //   this.getUserList()
-      // })
-      this.$refs.addFormRef.validator(async valid=>{
+      this.$refs.addFormRef.validate(async valid=>{
         if(!valid){
           return;
         }
@@ -297,7 +283,7 @@ export default {
     // 展示编辑用户的对话框
     async showEditDialog(id) {
       // console.log(id)
-      const { data: res } = await this.$http.get('users/' + id)
+      const { data: res } = await axios.get('users/' + id)
 
       if (res.meta.status !== 200) {
         return this.$message.error('查询用户信息失败！')
@@ -315,7 +301,7 @@ export default {
       this.$refs.editFormRef.validate(async valid => {
         if (!valid) return
         // 发起修改用户信息的数据请求
-        const { data: res } = await this.$http.put(
+        const { data: res } = await axios.put(
           'users/' + this.editForm.id,
           {
             email: this.editForm.email,
