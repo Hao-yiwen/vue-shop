@@ -11,6 +11,10 @@ Vue.prototype.$http=axios;
 
 Vue.config.productionTip = false
 
+axios.interceptors.request.use(config=>{
+  config.headers.Authorization=window.sessionStorage.getItem('token');
+  return config;
+})
 
 new Vue({
   router,

@@ -33,8 +33,8 @@
             },
             rules:{
               name: [
-                { required: true, message: '请输入名称', trigger: 'blur' },
-                { min: 6, max: 10, message: '长度在 6 到 10 个字符', trigger: 'blur' }
+                { required: false, message: '请输入名称', trigger: 'blur' },
+                { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
               ],
               password: [
                 { required: true, message: '请输入密码', trigger: 'blur' },
