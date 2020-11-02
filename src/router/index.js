@@ -16,7 +16,7 @@ const routes = [
     redirect: '/welcome',
     children: [
       {path: '/welcome', component: Welcome},
-      {path: '/user', component: User}
+      {path: '/users', component: User}
     ]
   }
 ]
@@ -24,6 +24,7 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+
 router.beforeEach((to, from, next) => {
   if (to.path === '/login') {
     return next()
