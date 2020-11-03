@@ -319,9 +319,7 @@ export default {
         return this.$message.info('已取消删除')
       }
 
-      const { data: res } = await this.$http.delete('roles/' + id, {
-        id: id,
-      })
+      const { data: res } = await this.$http.delete('roles/' + id)
       if (res.meta.status != 200) {
         return this.$message.error('删除失败')
       }
