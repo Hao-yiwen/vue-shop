@@ -11,16 +11,11 @@ module.exports = {
   ],
 
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: '@babel/eslint-parser'
   },
 
   rules: {
     'no-console': 'off',
     'no-debugger': 'off'
-  },
-
-  extends: [
-    'plugin:vue/essential',
-    '@vue/standard'
-  ]
+  }
 }
